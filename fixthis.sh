@@ -20,7 +20,7 @@ migrate_mail_directory () {
                         rsync -rav "$FOLDER_BASE" "$TARGET_BASE"
                         rm -rf "$FOLDER_BASE"
                         chown "$USER":"$USER" "$TARGET_BASE"
-                        chmod 744 "$TARGET_BASE"
+                        chmod 751 "$TARGET_BASE"
                 fi
         done
 }
