@@ -17,7 +17,7 @@ migrate_mail_directory () {
                         FOLDER_BASE="$(basename "$FOLDER")"
                         TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
 
-                        rsync -rav "$FOLDER_BASE" "${TARGET_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+                        rsync -rav "$FOLDER_BASE" "$TARGET_BASE"
                         rm -rf "$FOLDER_BASE"
                         chown "$USER":"$USER" "$TARGET_BASE"
                         chmod 744 "$TARGET_BASE"
