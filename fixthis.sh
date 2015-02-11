@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 check_working_directory () {
         if [[ $(echo "$PWD" | grep "mail") == "" ]]; then
                 echo "Error! mot in mail directory!"
@@ -10,6 +8,7 @@ check_working_directory () {
 }
 
 migrate_mail_directory () {
+        USER=$(stat -c '%U' ./)
         FOLDER_OLD="$1"
         FOLDER_NEW="$2"
 
@@ -18,8 +17,10 @@ migrate_mail_directory () {
                         FOLDER_BASE="$(basename "$FOLDER")"
                         TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
 
-                        rsync -rpav "$FOLDER_BASE" "${TARGET_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+                        rsync -rav "$FOLDER_BASE" "${TARGET_BASE//$FOLDER_OLD/$FOLDER_NEW}"
                         rm -rf "$FOLDER_BASE"
+                        chown "$USER":"$USER" "$TARGET_BASE"
+                        chmod 744 "$TARGET_BASE"
                 done
         fi
 }
