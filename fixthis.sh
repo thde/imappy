@@ -12,7 +12,6 @@ migrate_mail_directory () {
         FOLDER_OLD="$1"
         FOLDER_NEW="$2"
 
-        if [ -d "$FOLDER_OLD" ]; then
         for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*")"; do
                 FOLDER_BASE="$(basename "$FOLDER")"
                 TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
