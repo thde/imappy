@@ -1,7 +1,7 @@
 #!/bin/bash
 
 check_working_directory () {
-	if [[ $(basename "$PWD") !=  "mail" ]]; then
+	if [[ $(echo "$PWD" | grep "mail") != "" ]]; then
 		echo "Error! mot in mail directory!"
 		exit 1
 	fi
