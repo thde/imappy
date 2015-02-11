@@ -12,12 +12,5 @@ migrate_folder () {
 	done
 }
 
-mkdir "test"
-mkdir "test/.Gesendete Objekte"
-mkdir "test/.Gesendete Objekte.Test"
-mkdir "test/.Sent"
-cd "test"
-
-
 migrate_folder ".Gesendete Objekte" ".Sent"
 
