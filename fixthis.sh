@@ -7,7 +7,7 @@ check_working_directory () {
 	fi
 }
 
-migrate_folder () {
+migrate_mail_directory () {
 	FOLDER_OLD="$1"
 	FOLDER_NEW="$2"
 
@@ -20,5 +20,5 @@ migrate_folder () {
 }
 
 check_working_directory
-migrate_folder ".Gesendete Objekte" ".Sent"
+migrate_mail_directory ".Gesendete Objekte" ".Sent"
 
