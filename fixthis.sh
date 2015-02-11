@@ -1,5 +1,12 @@
 #!/bin/bash
 
+check_working_directory () {
+	if [[ $(basename "$PWD") !=  "mail" ]]; then
+		echo "Error! mot in mail directory!"
+		exit 1
+	fi
+}
+
 migrate_folder () {
 	FOLDER_OLD="$1"
 	FOLDER_NEW="$2"
@@ -12,5 +19,6 @@ migrate_folder () {
 	done
 }
 
+check_working_directory
 migrate_folder ".Gesendete Objekte" ".Sent"
 
