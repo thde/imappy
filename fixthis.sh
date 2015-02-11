@@ -1,22 +1,27 @@
 #!/bin/bash
 
+
+
 check_working_directory () {
-	if [[ $(echo "$PWD" | grep "mail") == "" ]]; then
-		echo "Error! mot in mail directory!"
-		exit 1
-	fi
+        if [[ $(echo "$PWD" | grep "mail") == "" ]]; then
+                echo "Error! mot in mail directory!"
+                exit 1
+        fi
 }
 
 migrate_mail_directory () {
-	FOLDER_OLD="$1"
-	FOLDER_NEW="$2"
+        FOLDER_OLD="$1"
+        FOLDER_NEW="$2"
 
-	for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*" -printf '%f\n')"; do
-		rsync -rpav "$FOLDER" "${FOLDER//$FOLDER_OLD/$FOLDER_NEW}"
-		if [[ $? -eq 0 ]]; then 
-			rm -rf "$FOLDER"
-		fi
-	done
+        if [ -d "$FOLDER_OLD" ]; then
+                for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*")"; do
+                        FOLDER_BASE="$(basename "$FOLDER")"
+                        TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+
+                        rsync -rpav "$FOLDER_BASE" "${TARGET_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+                        rm -rf "$FOLDER_BASE"
+                done
+        fi
 }
 
 check_working_directory
