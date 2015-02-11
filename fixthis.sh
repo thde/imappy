@@ -13,16 +13,17 @@ migrate_mail_directory () {
         FOLDER_NEW="$2"
 
         if [ -d "$FOLDER_OLD" ]; then
-                for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*")"; do
-                        FOLDER_BASE="$(basename "$FOLDER")"
-                        TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
-
+        for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*")"; do
+                FOLDER_BASE="$(basename "$FOLDER")"
+                TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+                        
+                if [ -d "$FOLDER_BASE" ]; then
                         rsync -rav "$FOLDER_BASE" "$TARGET_BASE"
                         rm -rf "$FOLDER_BASE"
                         chown "$USER":"$USER" "$TARGET_BASE"
                         chmod 744 "$TARGET_BASE"
-                done
-        fi
+                fi
+        done
 }
 
 check_working_directory
