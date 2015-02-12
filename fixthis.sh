@@ -12,12 +12,18 @@ migrate_mail_directory () {
         FOLDER_OLD="$1"
         FOLDER_NEW="$2"
 
-        for FOLDER in "$(find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*")"; do
-                FOLDER_BASE="$(basename "$FOLDER")"
+        find ./ -maxdepth 1 -type d -name "$FOLDER_OLD*" | while read -r file ; do
+
+                echo "---------------"
+                echo "$file"
+                echo "---------------"
+                FOLDER_BASE="$(basename "$file")"
                 TARGET_BASE="${FOLDER_BASE//$FOLDER_OLD/$FOLDER_NEW}"
+		echo $FOLDER_BASE
+                echo $TARGET_BASE
                         
                 if [ -d "$FOLDER_BASE" ]; then
-                        rsync -rav "$FOLDER_BASE" "$TARGET_BASE"
+                        rsync -rav "$FOLDER_BASE/" "$TARGET_BASE"
                         rm -rf "$FOLDER_BASE"
                         chown "$USER":"$USER" "$TARGET_BASE"
                         chmod 751 "$TARGET_BASE"
