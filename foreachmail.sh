@@ -9,7 +9,7 @@ find ./ -maxdepth 1 -mindepth 1 -type d -name "*\.*" | while read -r file ; do
 	echo "---------------"
 	
 	cd "$file"
-	curl -s https://raw.githubusercontent.com/thde/imap-fix/master/fixthis.sh | bash
+	curl https://raw.githubusercontent.com/thde/imap-fix/master/fixthis.sh | bash
 	cd "$CURRENT_DIR"
 
 done
