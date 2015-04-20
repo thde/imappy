@@ -36,6 +36,7 @@ check_working_directory
 migrate_mail_directory ".Gesendete Objekte" ".Sent"
 migrate_mail_directory ".Gesendete Elemente" ".Sent"
 migrate_mail_directory ".Sent Messages" ".Sent"
+migrate_mail_directory ".sent-mail" ".Sent"
 migrate_mail_directory ".Entw&APw-rfe" ".Drafts"
 migrate_mail_directory ".Papierkorb" ".Trash"
 migrate_mail_directory ".Deleted Messages" ".Trash"
