@@ -2,7 +2,7 @@
 
 CURRENT_DIR="$PWD"
 
-find ./ -maxdepth 1 -mindepth 1 -type d -name "*\.*" | while read -r file ; do
+find ./ -maxdepth 1 -mindepth 1 -type d | while read -r file ; do
 
 	echo "---------------"
 	echo "$file"
