@@ -7,7 +7,7 @@
 # If you're customers mail clients created lots of folders
 # for the same purpose, use this script to clean them up.
 #
-#
+# Usage: curl -s https://raw.githubusercontent.com/thde/imappy/master/imappy.sh | bash
 
 check_working_directory () {
         if [[ $(echo "$PWD" | grep "mail") == "" ]]; then
