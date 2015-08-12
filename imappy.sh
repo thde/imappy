@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#############################################################################
+# This script will merge all IMAP folders into Sent, Drafts, Trash and Junk #
+#############################################################################
+#
+# If you're customers mail clients created lots of folders
+# for the same purpose, use this script to clean them up.
+#
+#
+
 check_working_directory () {
         if [[ $(echo "$PWD" | grep "mail") == "" ]]; then
                 echo "Error! mot in mail directory!"
